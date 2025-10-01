@@ -1,8 +1,8 @@
 /*******************************************************************************
-Do-file: openingdo.do
-Project: Health Research
-Author: Gemini
-Date: 2025-10-01
+Do-file: econs.do
+Project: Health Research Econometric Analysis
+Author: Hassan S Konneh
+Date: 2025-4-01
 
 Purpose: This do-file is for cleaning, preparing, and analyzing health and 
 economic data for the health research project. It includes steps for importing 
@@ -50,7 +50,6 @@ h import excel
 * The `clear` option clears the memory before loading the new data.
 import excel using "C:\Users\LENIVO\Documents\Data_Sources\r_data.xlsx", firstrow clear
 
-* The following command was likely used to import a CSV file.
 * import delimited using "healthcare_dataset.csv", clear
 
 /*==============================================================================
@@ -113,8 +112,8 @@ format %4.2f gdpcapita
 format %3.2f gee
 format %3.2f ghe_pof_gdp
 
-* The following command had an invalid format. `F` should be `f`.
-* `format %3.2F lf`
+* The following command formats the labor force column.
+* `format %3.2f lf`
 format %3.2f lf
 
 
@@ -142,7 +141,7 @@ dfuller gdpcapita
 * Phillips-Perron test
 pperron gdpcapita
 
-* The following command is likely for an Augmented Dickey-Fuller test.
+* The following command is likly for an Augmented Dickey-Fuller test.
 * `adftest gdpcapita, adflags(0)`
 
 /*==============================================================================
@@ -152,9 +151,6 @@ VII. FURTHER DATA CLEANING AND ANALYSIS
 
 * The following commands seem to be for a different dataset.
 * They are kept here for reference.
-
-* Drop a row if the age_group is "age group".
-* `drop if age_group == "age group"`
 
 * Convert string variables to numeric.
 * `destring female_count, replace`
@@ -178,23 +174,6 @@ VIII. NOTES ON STATA SYNTAX
 * Use `*` or `//` for single-line comments.
 * Use `///` to continue a command on the next line.
 * Use `/* ... */` for multi-line comments.
-
-/*==============================================================================
-IX. NON-STATA CODE
-   - The following code is not valid Stata code and is commented out.
-==============================================================================*/
-
-/*
-function example(n)
-{
-	for (i=i; i<=n; i++){
-		printf("i=%g\n", i)
-	}
-	printf("done\n")
-}
-
-example(3)
-*/
 
 /*==============================================================================
 X. SAVING AND EXITING
